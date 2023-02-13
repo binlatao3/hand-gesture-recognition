@@ -11,7 +11,7 @@ import mediapipe as mp
 import math
 
 def home(request):
-    return render(request, 'ck/home.html')
+    return render(request, 'ck/index.html')
 
 def hand_gesture(request):
     return StreamingHttpResponse(gen_hand_gesture(VideoCamera(0)),
@@ -62,7 +62,7 @@ class VideoCamera(object):
 
             # Find contour with maximum area
             contour = max(contours, key = lambda x: cv2.contourArea(x))
-            
+
             epsilon = 0.0005*cv2.arcLength(contour,True)
             approx= cv2.approxPolyDP(contour,epsilon,True)
             
